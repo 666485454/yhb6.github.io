@@ -286,7 +286,7 @@
             0% { opacity: 0.8; }
             100% { opacity: 1; }
         }
-        /* 中奖弹窗（修复语法缺失） */
+        /* 中奖弹窗（完整修复） */
         .win-popup {
             position: fixed;
             top: 50%;
@@ -297,10 +297,7 @@
             padding: 40px 30px;
             width: 90%;
             max-width: 500px;
-            text-a0%);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
+            text-ali;
             padding: 12px 30px;
             font-size: 18px;
             font-weight: 600;
@@ -430,7 +427,7 @@
             document.head.appendChild(style);
         })();
 
-        // 2. 奖品池：50条问候语（完整，修复最后一条内容截断）
+        // 2. 奖品池：50条问候语（完整无截断）
         const prizes = [
             // 特等奖（2条）
             { level: "特等奖", levelClass: "special", content: "恭喜！愿你全年无烦恼，三餐皆美味，身边有温暖，心中有热爱，所求皆如愿，所行皆坦途，每一个平凡日子都闪着光！" },
@@ -484,13 +481,8 @@
             { level: "二等奖", levelClass: "second", content: "每天给自己一点鼓励，给自己一点信心，愿你越来越优秀，越来越强大！" },
             { level: "二等奖", levelClass: "second", content: "愿你三餐规律，作息正常，身体康健，心情愉悦，生活越来越有滋味！" },
             { level: "二等奖", levelClass: "second", content: "生活难免有不如意，只要心态好，一切都会好起来，愿你保持积极乐观，笑对人生！" },
-            { level: "二等奖", levelClass: "second", cont();
-            }, 800);
-        }
-
-        // 抽奖按钮点击事件（修复代码断裂）
-        drawBtn.addEventListener("click", () => {
-            if (isDrawing || !hasViewed) return;
+            { level: "二等奖", levelClass: "second", content: "愿你身边有良人相伴，脚下有路可走，心中有梦可追，生活有暖可依！" },
+            { level: "二等奖", levelClass: "second", con (isDrawing || !hasViewed) return;
 
             isDrawing = true;
             drawBtn.disabled = true;
