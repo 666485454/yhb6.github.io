@@ -297,7 +297,42 @@
             padding: 40px 30px;
             width: 90%;
             max-width: 500px;
-            text-ali;
+            text-align: center;
+            border: 2px solid #ff4d6d;
+            box-shadow: 0 0 50px #ff4d6d, 0 0 20px rgba(255, 77, 109, 0.5);
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+        .win-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+        .win-popup h2 {
+            color: #ff4d6d;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #ff4d6d;
+            animation: winTitle 1.5s ease infinite alternate;
+        }
+        @keyframes winTitle {
+            0% { text-shadow: 0 0 20px #ff4d6d; }
+            100% { text-shadow: 0 0 40px #ff4d6d, 0 0 10px #fff; }
+        }
+        .win-popup .win-content {
+            color: #e2e8f0;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+        }
+        .win-popup .close-btn {
+            background: linear-gradient(135deg, #ff4d6d 0%, #ff758f 100%);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
             padding: 12px 30px;
             font-size: 18px;
             font-weight: 600;
@@ -482,7 +517,44 @@
             { level: "二等奖", levelClass: "second", content: "愿你三餐规律，作息正常，身体康健，心情愉悦，生活越来越有滋味！" },
             { level: "二等奖", levelClass: "second", content: "生活难免有不如意，只要心态好，一切都会好起来，愿你保持积极乐观，笑对人生！" },
             { level: "二等奖", levelClass: "second", content: "愿你身边有良人相伴，脚下有路可走，心中有梦可追，生活有暖可依！" },
-            { level: "二等奖", levelClass: "second", con (isDrawing || !hasViewed) return;
+            { level: "二等奖", levelClass: "second", content: "新的一年，新的气象，愿你告别过去的遗憾，迎接崭新的未来，收获满满美好！" }
+        ];
+
+        // 3. 核心抽奖逻辑（完整无错）
+        const prizeBox = document.getElementById("prizeBox");
+        const prizeLevel = document.getElementById("prizeLevel");
+        const prizeContent = document.getElementById("prizeContent");
+        const drawBtn = document.getElementById("drawBtn");
+        const viewBtn = document.getElementById("viewBtn");
+        const initTip = prizeBox.querySelector(".init-tip");
+        const winPopup = document.getElementById("winPopup");
+        const popupTitle = document.getElementById("popupTitle");
+        const popupContent = document.getElementById("popupContent");
+        const closePopup = document.getElementById("closePopup");
+        const explosionContainer = document.getElementById("explosionContainer");
+        
+        let isDrawing = false;
+        let currentPrize = null;
+        let hasViewed = true;
+
+        // 生成爆炸光效（完整函数）
+        function createExplosion() {
+            const explosion = document.createElement("div");
+            explosion.className = "explosion";
+            // 定位在抽奖框中心
+            const containerRect = document.querySelector(".container").getBoundingClientRect();
+            explosion.style.left = `${containerRect.left + containerRect.width / 2 - 50}px`;
+            explosion.style.top = `${containerRect.top + containerRect.height / 2 - 50}px`;
+            explosionContainer.appendChild(explosion);
+            // 移除过期光效
+            setTimeout(() => {
+                explosion.remove();
+            }, 800);
+        }
+
+        // 抽奖按钮点击事件（完整逻辑）
+        drawBtn.addEventListener("click", () => {
+            if (isDrawing || !hasViewed) return;
 
             isDrawing = true;
             drawBtn.disabled = true;
@@ -589,5 +661,3 @@
     </script>
 </body>
 </html>
-
-
